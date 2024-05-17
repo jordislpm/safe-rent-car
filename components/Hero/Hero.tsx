@@ -31,9 +31,9 @@ function Hero() {
                         className='object-contain'
                         alt='hero-car'
                     />
-                    <div className='hero__image-overlay' />
+                   
                 </div>
-
+                <div className='hero__image-overlay' />
             </div>
         </div>
     )

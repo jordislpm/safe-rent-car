@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { footerLinks } from '@/constants'
 
 function Footer() {
     return (
@@ -19,14 +20,38 @@ function Footer() {
                     </p>
                 </div>
                 <div className='footer__links'>
-
+                    {footerLinks.map((link) => (
+                        <div key={link.title} className='footer__link'>
+                            <h3 className='font-bold'>{link.title}</h3>
+                            {link.links.map((item) => (
+                                <Link
+                                    href={item.url}
+                                    key={item.title}
+                                    className='text-gray-500'
+                                >
+                                    {item.title}
+                                </Link>
+                            ))}
+                        </div>
+                    ))}
                 </div>
+               
             </div>
+            <div className='flex justify-between items-center flex-wrap mt-10 border-t border-gray-100 sm:px-16 px-6 py-10'>
+                    <p>@2024 Safe Rent Car. All Rights Reserved</p>
+                    <div className='footer__copyrights-link'>
+                        <Link href="/"
+                            className='text-gray-500'>
+                            Privacy Policy
+                        </Link>
+                        <Link href="/"
+                            className='text-gray-500'>
+                            Terms of Use
+                        </Link>
+                    </div>
+                </div>
 
-
-
-
-
+            {/* extra footer for developer */}
             <div className='flex w-full justify-center'>
                 <p className='text-base text-gray-700'>
                     This project was developed by <a
