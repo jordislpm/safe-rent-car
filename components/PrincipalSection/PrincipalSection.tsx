@@ -1,8 +1,15 @@
+"use client"
+
 import React from 'react'
 import SearchBar from '../SearchBar/SearchBar'
 import CustomFilter from '../CustomFilter/CustomFilter'
+import useFetchDataCars from '@/hooks/useFetchDataCar'
 
 function PrincipalSection() {
+const {data, loading, error} = useFetchDataCars();
+
+
+console.log(data)
     return (
         <div
             className='mt-12 padding-x padding-y max-width'
@@ -18,6 +25,10 @@ function PrincipalSection() {
                     <CustomFilter title="year" />
                 </div>
             </div>
+{data ? <section>
+we hace cars
+</section> :
+<div> Oops, no results</div>}
         </div>
     )
 }
