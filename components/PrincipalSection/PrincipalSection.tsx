@@ -1,15 +1,16 @@
 "use client"
 
-import React from 'react'
+import React, { Fragment } from 'react'
 import SearchBar from '../SearchBar/SearchBar'
 import CustomFilter from '../CustomFilter/CustomFilter'
 import useFetchDataCars from '@/hooks/useFetchDataCar'
+import CarCard from '../CarCard/CarCard'
 
 function PrincipalSection() {
-const {data, loading, error} = useFetchDataCars();
+    const { data, loading, error } = useFetchDataCars();
 
 
-console.log(data)
+    console.log(data)
     return (
         <div
             className='mt-12 padding-x padding-y max-width'
@@ -25,10 +26,22 @@ console.log(data)
                     <CustomFilter title="year" />
                 </div>
             </div>
-{data ? <section>
-we hace cars
-</section> :
-<div> Oops, no results</div>}
+            {data && <section>
+                <div className='home__cars-wrapper'>
+                    {data.map((car, index) => (
+                        <Fragment key={`${index} ${car.model}`}>
+                            <CarCard {...car} />
+                        </Fragment>
+                    ))}
+                </div>
+            </section>}
+            {error &&
+                <div className='home__error-container'>
+                    <h2 className='text-black text-xl font-bold'>
+                        Opps, no results
+                    </h2>
+                    <p>{error}</p>
+                </div>}
         </div>
     )
 }
