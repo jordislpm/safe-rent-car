@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import { FilterProvider } from "@/context/filtercontex";
+import { FilterProvider } from "@/context/filterContex";
 
 export const metadata: Metadata = {
   title: "Safe Rent Car",
