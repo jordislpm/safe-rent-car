@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import { FilterProvider } from "@/context/filtercontex";
 
 export const metadata: Metadata = {
   title: "Safe Rent Car",
@@ -16,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`relative`}>
+        <FilterProvider>
         <Header/>
         {children}
         <Footer/>
+        </FilterProvider>
       </body>
     </html>
   );

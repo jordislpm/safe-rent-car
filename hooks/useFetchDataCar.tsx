@@ -1,26 +1,41 @@
 import { useState, useEffect } from 'react';
 import { fetchCarsApiNinja } from '@/utils/api_ninja_car';
-import { CarCardProps, FetchCarState } from '@/types';
+import { CarProps, FetchCarState, FilterProps } from '@/types';
 import { calculateCarRent } from '@/utils/calculate_car_rents';
-calculateCarRent
+import { generateCarImageUrl } from '@/utils/generate_car_img_url';
 
 
 
-const useFetchDataCars = (): FetchCarState<CarCardProps[]> => {
-    const [data, setData] = useState<CarCardProps[] | null>(null);
+const useFetchDataCars = (filters: FilterProps): FetchCarState<CarProps[]> => {
+    const [data, setData] = useState<CarProps[] | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        
+
+
         const fetchData = async () => {
             setLoading(true);
             setError(null);
             try {
-                const result = await fetchCarsApiNinja();
+                const result = await fetchCarsApiNinja(filters);
 
                 const resultMapped = result.map((car: any) => {
 
-                    const carRent = calculateCarRent(car.cityMPG, car.year);
+                    let carRent = calculateCarRent(car.cityMPG, car.year);
+
+                    if (carRent === "undefined" || carRent === "NaN"){
+                    carRent = (Math.floor(Math.random() * 101) + 50).toString()
+                    }
+
+                    const images = [
+                        generateCarImageUrl(car),
+                        generateCarImageUrl(car, "29"),
+                        generateCarImageUrl(car, "33"),
+                        generateCarImageUrl(car, "13")
+                     ]
+
                     return {
                         model: car.model,
                         make: car.make,
@@ -30,6 +45,7 @@ const useFetchDataCars = (): FetchCarState<CarCardProps[]> => {
                         drive: car.drive,
                         cityMPG: car.cityMPG,
                         carRent: carRent,
+                        images: images,
                     }
                 });
 
@@ -42,7 +58,8 @@ const useFetchDataCars = (): FetchCarState<CarCardProps[]> => {
         };
 
         fetchData();
-    }, []);
+        console.log("filters:"+ filters);
+    }, [filters]);
 
     return { data, loading, error };
 };
