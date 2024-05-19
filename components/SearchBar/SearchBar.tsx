@@ -4,7 +4,7 @@ import SearchManufacturer from '../SearchManufacturer/SearchManufacturer'
 import SearchButton from '../SearchButton/SearchButton';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useFilterSearch } from '@/hooks/useFiltersSearch';
+import { useFilterSearch } from '../../hooks/useFiltersSearch';
 
 function SearchBar() {
     const [manufacturer, setManufacturer] = useState<string>("");
