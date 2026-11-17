@@ -20,7 +20,7 @@ function Hero() {
                     Find, book or rent a car - safe, quickly and easily!
                 </h1>
                 <p className='hero__subtitle'>
-                    Streamine your car rental experience with our effortles booking process.
+                    Streamline your car rental experience with our effortless booking process.
                 </p>
                 <CustomButton
                     title="Explore Cars"

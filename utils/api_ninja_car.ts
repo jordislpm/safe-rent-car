@@ -1,16 +1,21 @@
 import { FilterProps } from "@/types";
 
 export async function fetchCarsApiNinja(filters: FilterProps) {
+  const { manufacturer = "", year = "", model = "", limit = 10, fuel = "" } = filters;
 
+  const params = new URLSearchParams({
+    make: manufacturer,
+    year: year ? year.toString() : "",
+    model: model,
+    limit: limit.toString(),
+    fuel: fuel,
+  });
 
-    const { manufacturer, year, model, limit, fuel } = filters;
-    const headers = {
-        'X-RapidAPI-Key': '4ae447e7f9msh1c0e5c55f151089p19522bjsn54b3a9d88e49',
-        'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com'
-    }
-    const response = await fetch(
-        `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`
-        , { headers: headers });
-    const result = await response.json()
-    return result
+  const response = await fetch(`/api/cars?${params.toString()}`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch cars: ${response.statusText}`);
+  }
+
+  const result = await response.json();
+  return result;
 }

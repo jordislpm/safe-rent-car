@@ -2,7 +2,6 @@
 import React, { createContext, useContext, useReducer, ReactNode, Dispatch } from 'react';
 import { FilterProps } from '@/types';
 import { ActionFilterReducerType } from '@/types';
-import { stat } from 'fs';
 
 
 
@@ -12,10 +11,10 @@ interface FilterContextProps {
 }
 
 const initialState: FilterProps = {
-  manufacturer: "volkswagen",
-  year: 2022,
+  manufacturer: "",
+  year: undefined,
   model: "",
-  limit: 10,
+  limit: 12,
   fuel: "",
 };
 
@@ -35,10 +34,11 @@ const filterReducer = (state: FilterProps, action: ActionFilterReducerType): Fil
       return { ...state, fuel: action.payload };
     case 'SET_FILTERS':
       return { ...state, ...action.payload };
+    case 'RESET_FILTERS':
+      return { ...initialState };
     default:
       return state;
   }
-  
 };
 
 export const FilterProvider = ({ children }: { children: ReactNode }) => {

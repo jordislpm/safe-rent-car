@@ -78,28 +78,28 @@ export const manufacturers = [
     {
       title: "About",
       links: [
-        { title: "How it works", url: "/" },
-        { title: "Featured", url: "/" },
-        { title: "Partnership", url: "/" },
-        { title: "Bussiness Relation", url: "/" },
+        { title: "How it works", url: "/how-it-works" },
+        { title: "Featured", url: "/featured" },
+        { title: "Partnership", url: "/partnership" },
+        { title: "Business Relation", url: "/business-relation" },
       ],
     },
     {
       title: "Company",
       links: [
-        { title: "Events", url: "/" },
-        { title: "Blog", url: "/" },
-        { title: "Podcast", url: "/" },
-        { title: "Invite a friend", url: "/" },
+        { title: "Events", url: "/events" },
+        { title: "Blog", url: "/blog" },
+        { title: "Podcast", url: "/podcast" },
+        { title: "Invite a friend", url: "/invite" },
       ],
     },
     {
       title: "Socials",
       links: [
-        { title: "Discord", url: "/" },
-        { title: "Instagram", url: "/" },
-        { title: "Twitter", url: "/" },
-        { title: "Facebook", url: "/" },
+        { title: "Discord", url: "https://discord.com" },
+        { title: "Twitter", url: "https://twitter.com" },
+        { title: "Facebook", url: "https://facebook.com" },
+        { title: "GitHub", url: "https://github.com" },
       ],
     },
   ];

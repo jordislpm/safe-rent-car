@@ -77,8 +77,9 @@ export interface FilterProps {
 
   export type ActionFilterReducerType = 
   | { type: 'SET_MANUFACTURER'; payload: string }
-  | { type: 'SET_YEAR'; payload: number }
+  | { type: 'SET_YEAR'; payload: number | undefined }
   | { type: 'SET_MODEL'; payload: string }
   | { type: 'SET_LIMIT'; payload: number }
   | { type: 'SET_FUEL'; payload: string }
-  | { type: 'SET_FILTERS'; payload: Partial<FilterProps> };
+  | { type: 'SET_FILTERS'; payload: Partial<FilterProps> }
+  | { type: 'RESET_FILTERS' };
